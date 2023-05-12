@@ -12,13 +12,23 @@ export class Component<T> extends EventTarget {
     this.dispatchEvent(new CustomEvent('rerender'))
   }
 
-  on(event: string, el: any, callback: () => void) {
-    el.addEventListener(event, callback)
+  on<T extends Element>(event: string, el: NodeListOf<T> | T, callback: (e: Event) => void) {
+    if ('forEach' in el) {
+      el.forEach(item => item.addEventListener(event, callback))
+    } else {
+      el.addEventListener(event, callback)
+    }
   }
 
-  query<T extends Element>(selector: string) {
-    const el = document.querySelector<T>(selector)!
+  query<T>(selector: string, nodeList?: boolean) {
+    if (nodeList) {
+      const elements = document.querySelectorAll(selector)!
+      
+      return elements as T
+    }
+    
+    const el = document.querySelector(selector)!
 
-    return el
+    return el as T
   }
 }

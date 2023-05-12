@@ -19,5 +19,6 @@
 
 .container {
   display: flex;
-  padding: 40px 16px;
+  flex-direction: column;
+  padding: 0 1em;
 }

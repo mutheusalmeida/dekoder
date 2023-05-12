@@ -1,38 +1,95 @@
-import { Counter } from '../main'
+import { logo } from '../assets/logo'
+import { speechIcon } from '../assets/speech-icon'
+import { textIcon } from '../assets/text-icon'
 import { Component, replaceHTML } from '../utils'
 
 import './style.css'
 
-class HeaderComponent extends Component<Counter> {
+type ModeType = 'speech' | 'text'
+type LanguageType = 'pt' | 'en'
+
+type StateType = {
+  mode: ModeType
+  language: LanguageType
+}
+
+class HeaderComponent extends Component<StateType> {
   state = {
-    counter: 0
+    mode: 'text' as ModeType,
+    language: 'pt' as LanguageType
   }
 
-  decrease () {
-    const btn = this.query('[data-js="decrease-btn"]')
+  setLanguage () {
+    const btns = this.query<NodeListOf<HTMLButtonElement>>('[data-js="language-btn"', true)
 
-    const handleBtnClick = () => {
+    const handleLanguageChange = (e: Event) => {
+      const btn = e.currentTarget as HTMLButtonElement
+
       this.setState(prev => ({
         ...prev,
-        counter: prev.counter - 1
+        language: btn.dataset.id as LanguageType
       }))
     }
     
-    this.on('click', btn, handleBtnClick)
+    this.on('click', btns, handleLanguageChange)
+  }
+
+  setMode () {
+    const btns = this.query<NodeListOf<HTMLButtonElement>>('[data-js="mode-btn"', true)
+
+    const handleModeChange = (e: Event) => {
+      const btn = e.currentTarget as HTMLButtonElement
+
+      this.setState(prev => ({
+        ...prev,
+        mode: btn.dataset.id as ModeType
+      }))
+    }
+    
+    this.on('click', btns, handleModeChange)
   }
 
   render () {
-    const el = this.query('[data-js="header"]')
+    const el = this.query<Element>('[data-js="header"]')
 
     replaceHTML(el, `
-      <div class="container">
-        children counter is ${this.state.counter}
-        
-        <button data-js="decrease-btn">Decrease</button>
-      </div>
+      <h1 class="header__logo" title="dekoder">
+        <a href="/">
+          ${logo}
+        </a>
+      </h1>
+
+      <nav class="header__nav">
+        <ul class="actions">
+          <li class="actions__item">
+            <div class="modes">
+              <button data-js="mode-btn" data-id="text" class="modes__item ${this.state.mode === 'text' ? 'active-mode' : ''}">
+                ${textIcon}
+              </button>
+              
+              <button data-js="mode-btn" data-id="speech" class="modes__item ${this.state.mode === 'speech' ? 'active-mode' : ''}">
+                ${speechIcon}
+              </button>
+            </div>
+          </li>
+
+          <li class="actions__item">
+            <div class="language">
+              <button data-js="language-btn" data-id="pt" class="language__item ${this.state.language === 'pt' ? 'active-language' : ''}">
+                PT
+              </button>
+              
+              <button data-js="language-btn" data-id="en" class="language__item ${this.state.language === 'en' ? 'active-language' : ''}">
+                EN
+              </button>
+            </div>
+          </li>
+        </ul>
+      </nav>
     `)
   
-    this.decrease()
+    this.setMode()
+    this.setLanguage()
   }
 }
 export const Header = new HeaderComponent()

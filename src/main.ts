@@ -4,7 +4,7 @@ import { Header } from './header/header'
 import './reset.css'
 import './style.css'
 
-export type Counter = { counter: number }
+type Counter = { counter: number }
 
 class AppComponent extends Component<Counter> {
   state = {
@@ -12,7 +12,7 @@ class AppComponent extends Component<Counter> {
   }
 
   increase () {
-    const btn = this.query('[data-js="increase-btn"]')
+    const btn = this.query<HTMLButtonElement>('[data-js="increase-btn"]')
 
     const handleBtnClick = () => {
       this.setState(prev => ({
@@ -28,9 +28,9 @@ class AppComponent extends Component<Counter> {
     const root = this.query<HTMLDivElement>('[data-js="root"]')
 
     replaceHTML(root, `
-      <header class="header" data-js="header"></header>
-
       <div class="container">
+        <header class="header" data-js="header"></header>
+
         parent counter is ${this.state.counter}
         
         <button data-js="increase-btn">Increase</button>

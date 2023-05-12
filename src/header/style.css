@@ -1,4 +1,80 @@
 .header {
   display: flex;
-  padding: 16px;
+  align-items: center;
+  padding: 1.5em 0;
+}
+
+.header__logo {
+  font-size: var(--font-size-16);
+}
+
+.header__logo svg {
+  min-width: 1.805em;
+  min-height: 3.0987em;
+}
+
+.header__nav {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: 1em;
+  padding: 0 1em;
+}
+
+.actions__item {
+  list-style: none;
+}
+
+.modes,
+.language {
+  display: flex;
+  padding: 1em;
+  background-color: var(--secondary-dark);
+  border-radius: 6.25em;
+  gap: 1em;
+}
+
+.modes__item,
+.language__item {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em;
+  border-radius: 6.25em;
+  align-items: center;
+  justify-content: center;
+}
+
+.language__item {
+  color: var(--green);
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  padding: 0;
+}
+
+.modes__item > svg {
+  min-width: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.modes__item > svg path {
+  fill: var(--green);
+}
+
+.active-mode,
+.active-language {
+  background-color: var(--green);
+}
+
+.active-language {
+  color: var(--secondary-dark);
+}
+
+.active-mode > svg path {
+  fill: var(--secondary-dark)
 }
