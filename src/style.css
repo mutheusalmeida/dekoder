@@ -1,62 +1,23 @@
-/*
-    Josh's Custom CSS Reset
-    https://www.joshwcomeau.com/css/custom-css-reset/
-  */
+:root {
+  --base-unit: 0.5rem;
+  --line-height-base-unit: 1;
+  --primary-dark: #18181b;
+  --secondary-dark: #27272a;
+  --green: #61dca3;
+  --white: #fff;
+  --font-family-primary: 'JetBrains Mono', monospace;
+  --breakpoint-sm: 23.4375em;
+  --breakpoint-md: 48em;
+  --breakpoint-lg: 90em;
+  --shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+  --font-size-16: calc(--base-unit) * 2;
+  --font-size-24: calc(--base-unit) * 3;
+  --font-size-32: calc(--base-unit) * 4;
+  --line-height-sm: calc(var(--line-height-base-unit) * 1.2);
+  --line-height-lg: calc(var(--line-height-base-unit) * 1.5);
+}
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  * {
-    margin: 0;
-  }
-
-  :root {
-    --base-unit: 0.5rem;
-    --line-height-base-unit: 1;
-    --primary-dark: #18181b;
-    --secondary-dark: #27272a;
-    --green: #61dca3;
-    --white: #fff;
-    --font-family-primary: 'JetBrains Mono', monospace;
-    --breakpoint-sm: 23.4375em;
-    --breakpoint-md: 48em;
-    --breakpoint-lg: 90em;
-    --shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
-    --font-size-16: calc(--base-unit) * 2;
-    --font-size-24: calc(--base-unit) * 3;
-    --font-size-32: calc(--base-unit) * 4;
-    --line-height-sm: calc(var(--line-height-base-unit) * 1.2);
-    --line-height-lg: calc(var(--line-height-base-unit) * 1.5);
-  }
-
-  html {
-    font-size: 100%;
-  }
-
-  html, body, [data-js="root"] {
-    height: 100%;
-  }
-
-  body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    font-family: var(--font-family-monospace);
-  }
-
-  img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-  }
-
-  input, button, textarea, select {
-    font: inherit;
-  }
-
-  p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
-  }
-
-  [data-js="root"] {
-    isolation: isolate;
-  }
+.container {
+  display: flex;
+  padding: 40px 16px;
+}
