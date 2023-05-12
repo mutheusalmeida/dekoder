@@ -11,4 +11,14 @@ export class Component<T> extends EventTarget {
     this.state = newState
     this.dispatchEvent(new CustomEvent('rerender'))
   }
+
+  on(event: string, el: any, callback: () => void) {
+    el.addEventListener(event, callback)
+  }
+
+  query<T extends Element>(selector: string) {
+    const el = document.querySelector<T>(selector)!
+
+    return el
+  }
 }

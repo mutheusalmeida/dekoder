@@ -11,21 +11,23 @@ class AppComponent extends Component<Counter> {
     counter: 0
   }
 
-  increase (selector: string) {
-    const btn = document.querySelector(selector)!
-    
-    btn.addEventListener('click', () => {
+  increase () {
+    const btn = this.query('[data-js="increase-btn"]')
+
+    const handleBtnClick = () => {
       this.setState(prev => ({
         ...prev,
         counter: prev.counter + 1
       }))
-    })
+    }
+
+    this.on('click', btn, handleBtnClick)
   }
 
-  render (selector: string) {
-    const root = document.querySelector<HTMLDivElement>(selector)!
+  render () {
+    const root = this.query<HTMLDivElement>('[data-js="root"]')
 
-    replaceHTML<HTMLDivElement>(root, `
+    replaceHTML(root, `
       <header class="header" data-js="header"></header>
 
       <div class="container">
@@ -35,12 +37,12 @@ class AppComponent extends Component<Counter> {
       </div>
     `)
   
-    this.increase('[data-js="increase-btn"]')
-    Header.render('[data-js="header"]')
+    this.increase()
+    Header.render()
   }
 }
 
 const App = new AppComponent()
 
-document.addEventListener('DOMContentLoaded', () => App.render('[data-js="root"]'))
-App.addEventListener('rerender', () => App.render('[data-js="root"]'))
+document.addEventListener('DOMContentLoaded', () => App.render())
+App.addEventListener('rerender', () => App.render())

@@ -8,19 +8,21 @@ class HeaderComponent extends Component<Counter> {
     counter: 0
   }
 
-  decrease (selector: string) {
-    const btn = document.querySelector(selector)!
-    
-    btn.addEventListener('click', () => {
+  decrease () {
+    const btn = this.query('[data-js="decrease-btn"]')
+
+    const handleBtnClick = () => {
       this.setState(prev => ({
         ...prev,
         counter: prev.counter - 1
       }))
-    })
+    }
+    
+    this.on('click', btn, handleBtnClick)
   }
 
-  render (selector: string) {
-    const el = document.querySelector(selector)!
+  render () {
+    const el = this.query('[data-js="header"]')
 
     replaceHTML(el, `
       <div class="container">
@@ -30,8 +32,8 @@ class HeaderComponent extends Component<Counter> {
       </div>
     `)
   
-    this.decrease('[data-js="decrease-btn"]')
+    this.decrease()
   }
 }
 export const Header = new HeaderComponent()
-Header.addEventListener('rerender', () => Header.render('[data-js="header"]'))
+Header.addEventListener('rerender', () => Header.render())
