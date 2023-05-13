@@ -6,6 +6,7 @@
   --green: #61dca3;
   --white: #fff;
   --font-family-primary: 'JetBrains Mono', monospace;
+  --font-family-secondary: 'Inter', sans-serif;
   --breakpoint-sm: 23.4375em;
   --breakpoint-md: 48em;
   --breakpoint-lg: 90em;
@@ -80,6 +81,7 @@
   height: 2.5em;
   line-height: 2.5em;
   padding: 0;
+  font-family: var(--font-family-secondary);
 }
 
 .modes__item > svg {
