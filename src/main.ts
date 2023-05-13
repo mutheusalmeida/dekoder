@@ -59,6 +59,11 @@ render(root, `
       </div>
 
       <div class="output-container">
+        <div class="empty-container">
+          <h2 class="empty-container__title">Nenhuma mensagem encontrada</h2>
+
+          <p class="empty-container__para">Digite um texto que você deseja criptografar ou descriptografar.</p>
+        </div>
       </div>
     </main>
   </div>
