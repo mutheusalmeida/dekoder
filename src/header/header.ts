@@ -24,11 +24,14 @@ class HeaderComponent extends Component<StateType> {
 
     const handleLanguageChange = (e: Event) => {
       const btn = e.currentTarget as HTMLButtonElement
+      const lang = btn.dataset.id as LanguageType
 
-      this.setState(prev => ({
-        ...prev,
-        language: btn.dataset.id as LanguageType
-      }))
+      if (this.state.language !== lang) {
+        this.setState(prev => ({
+          ...prev,
+          language: lang
+        }))
+      }
     }
     
     this.on('click', btns, handleLanguageChange)
@@ -39,11 +42,14 @@ class HeaderComponent extends Component<StateType> {
 
     const handleModeChange = (e: Event) => {
       const btn = e.currentTarget as HTMLButtonElement
+      const mode = btn.dataset.id as ModeType
 
-      this.setState(prev => ({
-        ...prev,
-        mode: btn.dataset.id as ModeType
-      }))
+      if (this.state.mode !== mode) {
+        this.setState(prev => ({
+          ...prev,
+          mode,
+        }))
+      }
     }
     
     this.on('click', btns, handleModeChange)
