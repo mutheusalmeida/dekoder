@@ -1,48 +1,53 @@
-import { Component, replaceHTML } from './utils'
-import { Header } from './header/header'
+import { render } from './utils'
+import { logo } from './assets/logo'
+import { speechIcon } from './assets/speech-icon'
+import { textIcon } from './assets/text-icon'
+import { app } from './app'
 
 import './reset.css'
 import './style.css'
 
-type Counter = { counter: number }
+const root = document.querySelector('[data-js="root"]')!
 
-class AppComponent extends Component<Counter> {
-  state = {
-    counter: 0
-  }
+render(root, `
+  <div class="container">
+    <header class="header" data-js="header">
+      <h1 class="header__logo" title="dekoder">
+        <a href="/">
+          ${logo}
+        </a>
+      </h1>
 
-  increase () {
-    const btn = this.query<HTMLButtonElement>('[data-js="increase-btn"]')
+      <nav class="header__nav">
+        <ul class="actions">
+          <li class="actions__item">
+            <div class="modes">
+              <button data-js="mode-btn" data-id="text" class="modes__item active-mode">
+                ${textIcon}
+              </button>
+              
+              <button data-js="mode-btn" data-id="speech" class="modes__item">
+                ${speechIcon}
+              </button>
+            </div>
+          </li>
 
-    const handleBtnClick = () => {
-      this.setState(prev => ({
-        ...prev,
-        counter: prev.counter + 1
-      }))
-    }
+          <li class="actions__item">
+            <div class="language">
+              <button data-js="language-btn" data-id="pt" class="language__item active-language">
+                PT
+              </button>
+              
+              <button data-js="language-btn" data-id="en" class="language__item">
+                EN
+              </button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+`)
 
-    this.on('click', btn, handleBtnClick)
-  }
-
-  render () {
-    const root = this.query<HTMLDivElement>('[data-js="root"]')
-
-    replaceHTML(root, `
-      <div class="container">
-        <header class="header" data-js="header"></header>
-
-        parent counter is ${this.state.counter}
-        
-        <button data-js="increase-btn">Increase</button>
-      </div>
-    `)
-  
-    this.increase()
-    Header.render()
-  }
-}
-
-const App = new AppComponent()
-
-document.addEventListener('DOMContentLoaded', () => App.render())
-App.addEventListener('rerender', () => App.render())
+app.switchMode()
+app.switchLanguage()
