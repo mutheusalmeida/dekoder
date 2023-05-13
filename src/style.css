@@ -28,6 +28,7 @@
   display: flex;
   align-items: center;
   padding: 1.5em 0;
+  gap: 1em;
 }
 
 .header__logo {
@@ -43,13 +44,14 @@
   width: 100%;
 }
 
-.actions {
+.header__actions {
   display: flex;
+  justify-content: space-between;
   gap: 1em;
-  padding: 0 1em;
+  padding: 0;
 }
 
-.actions__item {
+.header__actions li {
   list-style: none;
 }
 
@@ -107,7 +109,7 @@
   fill: var(--secondary-dark)
 }
 
-.contente {
+.content {
   display: flex;
   flex-direction: column;
   gap: 2.5em;
@@ -116,12 +118,12 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  margin-top: 2em;
+  margin-top: 3.5em;
   gap: 1.5em;
 }
 
 .input-container__text-field {
-  min-height: 18.75em;
+  min-height: 12.5em;
   background-color: transparent;
   border: none;
   color: var(--green);

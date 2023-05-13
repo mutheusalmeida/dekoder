@@ -19,8 +19,8 @@ render(root, `
       </h1>
 
       <nav class="header__nav">
-        <ul class="actions">
-          <li class="actions__item">
+        <ul class="header__actions">
+          <li>
             <div class="modes">
               <button data-js="mode-btn" data-id="text" class="modes__item active-mode">
                 ${textIcon}
@@ -32,7 +32,7 @@ render(root, `
             </div>
           </li>
 
-          <li class="actions__item">
+          <li>
             <div class="language">
               <button data-js="language-btn" data-id="pt" class="language__item active-language">
                 PT
