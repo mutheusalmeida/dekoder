@@ -25,7 +25,7 @@ render(root, `
               <button data-js="mode-btn" data-id="text" class="modes__item active-mode">
                 ${textIcon}
               </button>
-              
+
               <button data-js="mode-btn" data-id="speech" class="modes__item">
                 ${speechIcon}
               </button>
@@ -37,7 +37,7 @@ render(root, `
               <button data-js="language-btn" data-id="pt" class="language__item active-language">
                 PT
               </button>
-              
+
               <button data-js="language-btn" data-id="en" class="language__item">
                 EN
               </button>
@@ -49,7 +49,7 @@ render(root, `
 
     <main class="content">
       <div class="input-container">
-        <textarea class="input-container__text-field"></textarea>
+        <textarea class="input-container__text-field" placeholder="Digite seu texto"></textarea>
 
         <div class="input-container__actions">
           <button class="input-container__btn input-container__btn--encrypt">Criptografar</button>

@@ -11,9 +11,9 @@
   --breakpoint-md: 48em;
   --breakpoint-lg: 90em;
   --shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
-  --font-size-16: calc(--base-unit) * 2;
-  --font-size-24: calc(--base-unit) * 3;
-  --font-size-32: calc(--base-unit) * 4;
+  --font-size-16: calc(var(--base-unit) * 2);
+  --font-size-24: calc(var(--base-unit) * 3);
+  --font-size-32: calc(var(--base-unit) * 4);
   --line-height-sm: calc(var(--line-height-base-unit) * 1.2);
   --line-height-lg: calc(var(--line-height-base-unit) * 1.5);
 }
@@ -105,4 +105,34 @@
 
 .active-mode > svg path {
   fill: var(--secondary-dark)
+}
+
+.contente {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5em;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  gap: 1.5em;
+}
+
+.input-container__text-field {
+  min-height: 18.75em;
+  background-color: transparent;
+  border: none;
+  color: var(--green);
+  font-size: var(--font-size-24);
+}
+
+.input-container__text-field::placeholder {
+  color: inherit;
+  font-size: inherit;
+}
+
+.input-container__text-field:focus-visible {
+  outline: none;
 }
