@@ -54,7 +54,7 @@ render(root, `
         <div class="input-container__actions">
           <button class="input-container__btn input-container__btn--encrypt">Criptografar</button>
 
-          <button class="input-container__btn--decrypt">Descriptografar</button>
+          <button class="input-container__btn input-container__btn--decrypt">Descriptografar</button>
         </div>
       </div>
 
