@@ -27,6 +27,26 @@
     color: var(--white);
   }
 
+
+  * {
+    scrollbar-color: var(--green) var(--secondary-dark);
+  }
+
+  *::-webkit-scrollbar {
+    width: 0.625rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--secondary-dark);
+    border-radius: 0.625rem;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--green);
+    border-radius: 0.625rem;
+
+  }
+
   img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;

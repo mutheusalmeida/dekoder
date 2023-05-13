@@ -7,9 +7,6 @@
   --white: #fff;
   --font-family-primary: 'JetBrains Mono', monospace;
   --font-family-secondary: 'Inter', sans-serif;
-  --breakpoint-sm: 23.4375em;
-  --breakpoint-md: 48em;
-  --breakpoint-lg: 90em;
   --shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
   --font-size-16: calc(var(--base-unit) * 2);
   --font-size-24: calc(var(--base-unit) * 3);
@@ -19,15 +16,16 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  padding: 0 1em;
+  display: grid;
+  padding: 1.5em 1em;
+  min-height: 100%;
+  grid-template-rows: max-content 1fr;
+  gap: 5em;
 }
 
 .header {
   display: flex;
   align-items: center;
-  padding: 1.5em 0;
   gap: 1em;
 }
 
@@ -115,27 +113,26 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr max-content;
   gap: 4em;
-  padding: 2.5em 0;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
-  margin-top: 1.5em;
   gap: 1.5em;
 }
 
 .input-container__text-field {
-  min-height: 10.5em;
+  height: 100%;
   background-color: transparent;
   border: none;
   color: var(--green);
   font-size: var(--font-size-24);
   line-height: var(--line-height-lg);
   padding: 0;
+  resize: none;
 }
 
 .input-container__text-field::placeholder {
@@ -226,4 +223,15 @@
 .empty-container__para {
   font-size: var(--font-size-16);
   line-height: var(--line-height-lg);
+}
+
+@media (min-width: 48em) {
+  .container {
+    padding: 2.5em;
+    gap: 7.25em;
+  }
+
+  .output-container {
+    margin: 0;
+  }
 }
