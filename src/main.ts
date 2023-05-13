@@ -46,6 +46,21 @@ render(root, `
         </ul>
       </nav>
     </header>
+
+    <main class="content">
+      <div class="input-container">
+        <textarea class="input-container__text-field"></textarea>
+
+        <div class="input-container__actions">
+          <button class="input-container__btn input-container__btn--encrypt">Criptografar</button>
+
+          <button class="input-container__btn--decrypt">Descriptografar</button>
+        </div>
+      </div>
+
+      <div class="output-container">
+      </div>
+    </main>
   </div>
 `)
 
