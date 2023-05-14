@@ -2,6 +2,7 @@ import { render } from './utils'
 import { logo } from './assets/logo'
 import { speechIcon } from './assets/speech-icon'
 import { textIcon } from './assets/text-icon'
+import { notFoundIllustra } from './assets/not-found-illustra'
 import { app } from './app'
 
 import './reset.css'
@@ -60,6 +61,10 @@ render(root, `
 
       <div class="output-container">
         <div class="empty-container">
+          <div class="empty-container__illustra">
+            ${notFoundIllustra}
+          </div>
+
           <h2 class="empty-container__title">Nenhuma mensagem encontrada</h2>
 
           <p class="empty-container__para">Digite um texto que você deseja criptografar ou descriptografar.</p>
