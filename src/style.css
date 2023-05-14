@@ -235,3 +235,35 @@
     margin: 0;
   }
 }
+
+@media (min-width: 90em) {
+  .container {
+    grid-template-columns: max-content 1fr;
+  }
+
+  .container,
+  .content {
+    grid-template-rows: auto;
+    gap: 5em;
+  }
+
+  .header,
+  .header__actions,
+  .modes,
+  .language {
+    flex-direction: column;
+  }
+
+  .header {
+    padding: 1.5em;
+  }
+
+  .header,
+  .header__actions {
+    gap: 3em;
+  }
+
+  .content {
+    grid-template-columns: 1fr 25em;
+  }
+}
