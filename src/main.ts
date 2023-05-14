@@ -23,6 +23,8 @@ render(root, `
         <ul class="header__actions">
           <li>
             <div class="modes">
+              <div data-id="mode-bg" class="modes__bg"></div>
+
               <button data-js="mode-btn" data-id="text" class="modes__item active-mode">
                 ${textIcon}
               </button>
@@ -35,6 +37,8 @@ render(root, `
 
           <li>
             <div class="language">
+              <div data-id="language-bg" class="language__bg"></div>
+
               <button data-js="language-btn" data-id="pt" class="language__item active-language">
                 PT
               </button>

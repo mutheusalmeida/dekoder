@@ -31,6 +31,7 @@
 
 .header__logo {
   font-size: var(--font-size-16);
+  transition: all 0.3s ease;
 }
 
 .header__logo svg {
@@ -56,10 +57,32 @@
 .modes,
 .language {
   display: flex;
-  padding: 1em;
   background-color: var(--secondary-dark);
+  padding: 1em;
   border-radius: 6.25em;
   gap: 1em;
+  position: relative;
+}
+
+.modes__bg,
+.language__bg {
+  position: absolute;
+  height: 2.5em;
+  width: 2.5em;
+  transition: transform 0.3s ease-in-out;
+  aspect-ratio: 1/1;
+  border-radius: inherit;
+  background-color: var(--green);
+}
+
+.language__bg.right,
+.modes__bg.right {
+  transform: translateX(calc(100% + 1em));
+}
+
+.language__bg.left,
+.modes__bg.left {
+  transform: translateX(0);
 }
 
 .modes__item,
@@ -72,12 +95,15 @@
   border-radius: 6.25em;
   align-items: center;
   justify-content: center;
-  transition: all ease 0.2s;
 }
 
 .modes__item:active,
 .language__item:active {
   scale: 0.98;
+}
+
+.modes__item {
+  transition: all 0.3s ease;
 }
 
 .language__item {
@@ -87,24 +113,22 @@
   line-height: 2.5em;
   padding: 0;
   font-family: var(--font-family-secondary);
+  transition: all 0.3s ease, color 0s;
+  z-index: 1;
 }
 
 .modes__item > svg {
   min-width: 1.5em;
   width: 1.5em;
   height: 1.5em;
+  z-index: 1;
 }
 
 .modes__item > svg path {
   fill: var(--green);
 }
 
-.active-mode,
-.active-language {
-  background-color: var(--green);
-}
-
-.active-language {
+.language__item.active-language {
   color: var(--secondary-dark);
 }
 
@@ -165,22 +189,17 @@
   padding: 0 1.5em;
   border-radius: 1.5em;
   border: none;
-  transition: opacity, box-shadow, ease 0.2s;
+  transition: opacity, box-shadow, 0.2s ease;
   cursor: pointer;
   font-size: var(--font-size-16);
 }
 
 @media not (hover: none) {
   .modes__item:not(.active-mode):hover,
-  .language__item:not(.active-language):hover {
-    transform: translateY(-4px);
-  }
-
-  .input-container__btn--encrypt:hover {
-    transform: translateY(-4px);
-  }
-
-  .input-container__btn--decrypt:hover {
+  .language__item:not(.active-language):hover,
+  .input-container__btn--encrypt:hover,
+  .input-container__btn--decrypt:hover,
+  .header__logo:hover {
     transform: translateY(-4px);
   }
 }
@@ -267,6 +286,16 @@
   .header,
   .header__actions {
     gap: 3em;
+  }
+
+  .language__bg.right,
+  .modes__bg.right {
+    transform: translateY(calc(100% + 1em));
+  }
+
+  .language__bg.left,
+  .modes__bg.left {
+    transform: translateY(0);
   }
 
   .content {
