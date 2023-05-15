@@ -41,10 +41,12 @@ export const i18n = (() => {
 
 const updateContent = () => {
   for (let key in translation) {
+    const el = document.querySelector(`[data-lng="${key}"]`)
+
     if (key.includes('TextField')) {
-      document.querySelector(`[data-lng="${key}"]`)!.setAttribute('placeholder', i18next.t(key))
-    } else {
-      render(document.querySelector(`[data-lng="${key}"]`)!, i18next.t(key))
+      document.querySelector(`[data-lng="${key}"]`)?.setAttribute('placeholder', i18next.t(key))
+    } else if (el) {
+      render(el, i18next.t(key))
     }
   }
 
@@ -58,7 +60,7 @@ export const changeLanguage = (language: string) => {
 
 i18next.on('languageChanged', () => {
   updateContent()
-  const langBtn = document.querySelector(`[data-id="${i18next.resolvedLanguage}"]`)!
+  const langBtn = document.querySelector<HTMLButtonElement>(`[data-id="${i18next.resolvedLanguage}"]`)!
   langBtn.classList.add('active-language')
   toggleSwitcherAnimation('language')
 })
