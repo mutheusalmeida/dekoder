@@ -4,6 +4,7 @@ import { speechIcon } from './assets/speech-icon'
 import { textIcon } from './assets/text-icon'
 import { notFoundIllustra } from './assets/not-found-illustra'
 import { app } from './app'
+import { i18n } from './i18n'
 
 import './reset.css'
 import './style.css'
@@ -39,7 +40,7 @@ render(root, `
             <div class="language">
               <div data-id="language-bg" class="language__bg"></div>
 
-              <button data-js="language-btn" data-id="pt" class="language__item active-language">
+              <button data-js="language-btn" data-id="pt-BR" class="language__item active-language">
                 PT
               </button>
 
@@ -69,7 +70,7 @@ render(root, `
             ${notFoundIllustra}
           </div>
 
-          <h2 class="empty-container__title">Nenhuma mensagem encontrada</h2>
+          <h2 data-lng="emptyContainerTitle" class="empty-container__title">Nenhuma mensagem encontrada</h2>
 
           <p class="empty-container__para">Digite um texto que você deseja criptografar ou descriptografar.</p>
         </div>
@@ -78,5 +79,6 @@ render(root, `
   </div>
 `)
 
+i18n.init()
 app.switchMode()
 app.switchLanguage()

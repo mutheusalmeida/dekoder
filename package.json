@@ -12,5 +12,7 @@
     "typescript": "^5.0.2",
     "vite": "^4.3.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "i18next": "^22.4.15"
+  }
 }

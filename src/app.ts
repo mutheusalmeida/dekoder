@@ -1,21 +1,21 @@
+import { changeLanguage } from "./i18n"
+
 type ModeType = 'text' | 'speech'
-type LanguageType = 'pt' | 'en'
+type LanguageType = 'pt-BR' | 'en'
 
 export const app = (() => {
   let mode: ModeType = 'text'
-  let language: LanguageType = 'pt'
+  let language: LanguageType = 'pt-BR'
 
   function  switcher <T>(type: 'mode' | 'language', active: ModeType | LanguageType) {
     const btns = Array.from(document.querySelectorAll(`[data-js="${type}-btn"]`))
     const background = document.querySelector<HTMLDivElement>(`[data-id="${type}-bg"]`)!
 
-    console.log(background)
     let value = active
 
     const handleSwitcherClick = (e: Event) => {
       const btn = e.currentTarget as HTMLButtonElement
       value = btn.dataset.id as ModeType | LanguageType
-      console.log(value)
 
       if (!btn.classList.contains(`active-${type}`)) {
         btns.map(btn => btn.classList.remove(`active-${type}`))
@@ -28,6 +28,10 @@ export const app = (() => {
           background.classList.remove('left')
           background.classList.add('right')
         }
+      }
+
+      if (type === 'language') {
+        changeLanguage(value)
       }
     }
 
