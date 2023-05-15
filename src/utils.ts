@@ -14,3 +14,7 @@ export const toggleSwitcherAnimation = (type: 'mode' | 'language') => {
     blob.classList.add('forward')
   }
 }
+
+export const flip = <T extends Object>(data: T): T => Object.fromEntries(Object.entries(data).map(([key, value]) => [value, key]))
+
+export const encrypterRegExp = <T extends Object>(data: T): RegExp => new RegExp(`${Object.keys(data).join('|')}`, 'g')

@@ -55,17 +55,17 @@ render(root, `
 
     <main class="content">
       <div class="input-container">
-        <textarea data-lng="inputContainerTextField" class="input-container__text-field" placeholder="Digite seu texto"></textarea>
+        <textarea data-js="text-field" data-lng="inputContainerTextField" class="input-container__text-field" placeholder="Digite seu texto"></textarea>
 
         <div class="input-container__actions">
-          <button data-lng="inputContainerBtnEncrypt" class="input-container__btn input-container__btn--encrypt">Criptografar</button>
+          <button data-id="encrypt" data-js="encrypter-btn" data-lng="inputContainerBtnEncrypt" class="input-container__btn input-container__btn--encrypt">Criptografar</button>
 
-          <button data-lng="inputContainerBtnDecrypt" class="input-container__btn input-container__btn--decrypt">Descriptografar</button>
+          <button data-id="decrypt" data-js="encrypter-btn" data-lng="inputContainerBtnDecrypt" class="input-container__btn input-container__btn--decrypt">Descriptografar</button>
         </div>
       </div>
 
-      <div class="output-container">
-        <div class="empty-container">
+      <div data-js="output" class="output-container">
+        <div data-js="" class="empty-container">
           <div class="empty-container__illustra">
             ${notFoundIllustra}
           </div>
@@ -82,3 +82,4 @@ render(root, `
 i18n.init()
 app.switchMode()
 app.switchLanguage()
+app.encrypter()
