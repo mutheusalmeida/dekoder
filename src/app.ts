@@ -1,51 +1,39 @@
-import { changeLanguage } from "./i18n"
-
-type ModeType = 'text' | 'speech'
-type LanguageType = 'pt-BR' | 'en'
+import { changeLanguage } from './i18n'
+import { toggleSwitcherAnimation } from './utils'
 
 export const app = (() => {
-  let mode: ModeType = 'text'
-  let language: LanguageType = 'pt-BR'
-
-  function  switcher <T>(type: 'mode' | 'language', active: ModeType | LanguageType) {
+  function  switcher (type: 'mode' | 'language') {
     const btns = Array.from(document.querySelectorAll(`[data-js="${type}-btn"]`))
-    const background = document.querySelector<HTMLDivElement>(`[data-id="${type}-bg"]`)!
 
-    let value = active
+    let current
 
     const handleSwitcherClick = (e: Event) => {
       const btn = e.currentTarget as HTMLButtonElement
-      value = btn.dataset.id as ModeType | LanguageType
+      current = btn.dataset.id!
 
       if (!btn.classList.contains(`active-${type}`)) {
         btns.map(btn => btn.classList.remove(`active-${type}`))
-        btn.classList.add(`active-${type}`)
 
-        if (value === active) {
-          background.classList.remove('right')
-          background.classList.add('left')
-        } else {
-          background.classList.remove('left')
-          background.classList.add('right')
+        if (type === 'mode') {
+          btn.classList.add(`active-mode`)
+          toggleSwitcherAnimation(type)
         }
-      }
 
-      if (type === 'language') {
-        changeLanguage(value)
+        if (type === 'language') {
+          changeLanguage(current)
+        }
       }
     }
 
     btns.map(btn => btn.addEventListener('click', handleSwitcherClick))
-
-    return value as T
   }
 
   function switchMode () {
-    mode = switcher<ModeType>('mode', mode)
+    switcher('mode')
   }
 
   function switchLanguage () {
-    language = switcher<LanguageType>('language', language)
+    switcher('language')
   }
 
   return {

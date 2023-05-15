@@ -40,7 +40,7 @@ render(root, `
             <div class="language">
               <div data-id="language-bg" class="language__bg"></div>
 
-              <button data-js="language-btn" data-id="pt-BR" class="language__item active-language">
+              <button data-js="language-btn" data-id="pt-BR" class="language__item">
                 PT
               </button>
 

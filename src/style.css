@@ -75,13 +75,13 @@
   background-color: var(--green);
 }
 
-.language__bg.right,
-.modes__bg.right {
+.language__bg.forward,
+.modes__bg.forward {
   transform: translateX(calc(100% + 1em));
 }
 
-.language__bg.left,
-.modes__bg.left {
+.language__bg.backward,
+.modes__bg.backward {
   transform: translateX(0);
 }
 
@@ -288,13 +288,13 @@
     gap: 3em;
   }
 
-  .language__bg.right,
-  .modes__bg.right {
+  .language__bg.forward,
+  .modes__bg.forward {
     transform: translateY(calc(100% + 1em));
   }
 
-  .language__bg.left,
-  .modes__bg.left {
+  .language__bg.backward,
+  .modes__bg.backward {
     transform: translateY(0);
   }
 
