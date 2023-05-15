@@ -55,12 +55,12 @@ render(root, `
 
     <main class="content">
       <div class="input-container">
-        <textarea class="input-container__text-field" placeholder="Digite seu texto"></textarea>
+        <textarea data-lng="inputContainerTextField" class="input-container__text-field" placeholder="Digite seu texto"></textarea>
 
         <div class="input-container__actions">
-          <button class="input-container__btn input-container__btn--encrypt">Criptografar</button>
+          <button data-lng="inputContainerBtnEncrypt" class="input-container__btn input-container__btn--encrypt">Criptografar</button>
 
-          <button class="input-container__btn input-container__btn--decrypt">Descriptografar</button>
+          <button data-lng="inputContainerBtnDecrypt" class="input-container__btn input-container__btn--decrypt">Descriptografar</button>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ render(root, `
 
           <h2 data-lng="emptyContainerTitle" class="empty-container__title">Nenhuma mensagem encontrada</h2>
 
-          <p class="empty-container__para">Digite um texto que você deseja criptografar ou descriptografar.</p>
+          <p data-lng="emptyContainerPara" class="empty-container__para">Digite um texto que você deseja criptografar ou descriptografar.</p>
         </div>
       </div>
     </main>
