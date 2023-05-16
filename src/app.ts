@@ -6,6 +6,18 @@ import removeAccents from 'remove-accents'
 type CodesType = { [key: string]: string }
 
 export const app = (() => {
+  function clipboard () {
+    const btn = document.querySelector<HTMLButtonElement>('[data-js="copy-btn"]')!
+
+    const handleCopyFromClipboard = () => {
+      const text = document.querySelector<HTMLParagraphElement>('[data-js="result"]')!.innerHTML
+
+      navigator.clipboard.writeText(text)
+    }
+
+    btn.addEventListener('click', handleCopyFromClipboard)
+  }
+
   function recognitionResult () {
     const textField = document.querySelector<HTMLTextAreaElement>('[data-js="text-field"]')!
 
@@ -55,9 +67,14 @@ export const app = (() => {
           result = value.replace(re, (match: string) => flipedCodes[match])
         }
 
-        const outputHtml = `<p>${result}</p>`
+        const outputHtml = `
+          <p data-js="result">${result}</p>
+
+          <button data-js="copy-btn" data-lng="outputContainerCopyBtn" class="base-btn base-btn--copy">Copiar</button>
+        `
 
         render(outputEl, outputHtml)
+        clipboard()
       }
     }
 
