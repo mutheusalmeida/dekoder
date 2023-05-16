@@ -1,20 +1,24 @@
 import i18next from 'i18next'
 
 export const speechRecognition = (() => {
-  let speech = new webkitSpeechRecognition()
+  let instance: SpeechRecognition | undefined
 
   function init () {
-    if ('SpeechRecognition' in window) {
-      speech = new SpeechRecognition()
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition
+      instance = new SpeechRecognition()
+      instance.continuous = true
+      instance.interimResults = true
+      instance.lang = i18next.resolvedLanguage
     }
+  }
 
-    speech.continuous = true
-    speech.interimResults = true
-    speech.lang = i18next.resolvedLanguage
+  function getInstance () {
+    return instance
   }
 
   return {
     init,
-    speech,
+    getInstance,
   }
 })()

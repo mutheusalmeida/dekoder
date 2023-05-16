@@ -106,6 +106,10 @@
   transition: all 0.3s ease;
 }
 
+.modes__item:disabled {
+  opacity: 0.5;
+}
+
 .language__item {
   color: var(--green);
   width: 2.5em;
@@ -195,7 +199,7 @@
 }
 
 @media not (hover: none) {
-  .modes__item:not(.active-mode):hover,
+  .modes__item:not(.active-mode):not(:disabled):hover,
   .language__item:not(.active-language):hover,
   .base-btn:hover,
   .header__logo:hover {

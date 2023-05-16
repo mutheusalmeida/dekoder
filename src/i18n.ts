@@ -1,32 +1,49 @@
 import i18next from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { render, toggleSwitcherAnimation } from './utils'
-const translation = {
-  emptyContainerTitle: 'Nenhuma mensagem encontrada',
-  inputContainerTextField: 'Digite seu texto',
-  inputContainerBtnEncrypt: 'Criptografar',
-  inputContainerBtnDecrypt: 'Descriptografar',
-  emptyContainerPara: 'Digite um texto que você deseja criptografar ou descriptografar.',
+
+type TranslationType = {
+  emptyContainerTitle: string
+  inputContainerTextField: string
+  inputContainerTextFieldSpeech: string
+  inputContainerBtnEncrypt: string
+  inputContainerBtnDecrypt: string
+  emptyContainerPara: string
+}
+
+type ResourcesType = {
+  'pt-BR': { translation: TranslationType }
+  en: { translation: TranslationType }
+}
+
+export const resources: ResourcesType = {
+  'pt-BR': {
+    translation: {
+      emptyContainerTitle: 'Nenhuma mensagem encontrada',
+      inputContainerTextField: 'Digite seu texto',
+      inputContainerTextFieldSpeech: 'Fale algo...',
+      inputContainerBtnEncrypt: 'Criptografar',
+      inputContainerBtnDecrypt: 'Descriptografar',
+      emptyContainerPara: 'Digite um texto que você deseja criptografar ou descriptografar.',
+    }
+  },
+  en: {
+    translation: {
+      emptyContainerTitle: 'No message found',
+      inputContainerTextField: 'Type your text',
+      inputContainerTextFieldSpeech: 'Say something...',
+      inputContainerBtnEncrypt: 'Encrypt',
+      inputContainerBtnDecrypt: 'Decrypt',
+      emptyContainerPara: 'Type a text that you want to encrypt or decrypt.',
+    },
+  },
 }
 
 export const i18n = (() => {
   function init () {
     i18next.init({
       fallbackLng: 'en',
-      resources: {
-        'pt-BR': {
-          translation,
-        },
-        en: {
-          translation: {
-            emptyContainerTitle: 'No message found',
-            inputContainerTextField: 'Type your text',
-            inputContainerBtnEncrypt: 'Encrypt',
-            inputContainerBtnDecrypt: 'Decrypt',
-            emptyContainerPara: 'Type a text that you want to encrypt or decrypt.',
-          },
-        },
-      },
+      resources,
     }, () => {
       updateContent()
     })
@@ -39,11 +56,18 @@ export const i18n = (() => {
 })()
 
 const updateContent = () => {
-  for (let key in translation) {
+  for (let key in resources.en.translation) {
     const el = document.querySelector(`[data-lng="${key}"]`)
 
     if (key.includes('TextField')) {
-      document.querySelector(`[data-lng="${key}"]`)?.setAttribute('placeholder', i18next.t(key))
+      const textField = document.querySelector(`[data-lng="inputContainerTextField"]`)!
+      const speechBtn = document.querySelector<HTMLButtonElement>('[data-id="speech"]')!
+
+      if (speechBtn.classList.contains('active-mode')) {
+        textField.setAttribute('placeholder', i18next.t('inputContainerTextFieldSpeech'))
+      } else {
+        textField.setAttribute('placeholder', i18next.t('inputContainerTextField'))
+      }
     } else if (el) {
       render(el, i18next.t(key))
     }

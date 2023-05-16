@@ -81,13 +81,7 @@ render(root, `
 `)
 
 i18n.init()
-
-if ('webkitSpeechRecognition' in window) {
-  speechRecognition.init()
-} else {
-  console.log('Speech recognition not available')
-}
-
+speechRecognition.init()
 app.switchMode()
 app.switchLanguage()
 app.encrypter()

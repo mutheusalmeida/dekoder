@@ -1,4 +1,5 @@
-import { changeLanguage } from './i18n'
+import i18next from 'i18next'
+import { changeLanguage, resources } from './i18n'
 import { speechRecognition } from './speech-recognition'
 import { encrypterRegExp, flip, render, toggleSwitcherAnimation } from './utils'
 import removeAccents from 'remove-accents'
@@ -20,20 +21,23 @@ export const app = (() => {
 
   function recognitionResult () {
     const textField = document.querySelector<HTMLTextAreaElement>('[data-js="text-field"]')!
+    const recognition = speechRecognition.getInstance()
 
-    speechRecognition.speech.onresult = (event: SpeechRecognitionEvent) => {
-      let interimResult = ''
+    if (recognition) {
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
+        let interimResult = ''
 
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          textField.value = event.results[i][0].transcript
-        } else {
-          interimResult += event.results[i][0].transcript
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            textField.value = event.results[i][0].transcript
+          } else {
+            interimResult += event.results[i][0].transcript
+          }
         }
-      }
 
-      if (interimResult) {
-        textField.value = interimResult
+        if (interimResult) {
+          textField.value = interimResult
+        }
       }
     }
   }
@@ -87,40 +91,53 @@ export const app = (() => {
     const handleSwitcherClick = (e: Event) => {
       const btn = e.currentTarget as HTMLButtonElement
       const current = btn.dataset.id!
+      const recognition = speechRecognition.getInstance()
 
       if (!btn.classList.contains(`active-${type}`)) {
         btns.map(btn => btn.classList.remove(`active-${type}`))
 
-        if (type === 'mode') {
-          btn.classList.add(`active-mode`)
-          toggleSwitcherAnimation(type)
+        if (recognition) {
+          if (type === 'mode') {
+            btn.classList.add(`active-mode`)
+            toggleSwitcherAnimation(type)
+            const textField = document.querySelector(`[data-lng="inputContainerTextField"]`)!
+            let placeholder
 
-          if (current === 'speech') {
-            speechRecognition.speech.start()
-            recognitionResult()
-          } else {
-            speechRecognition.speech.stop()
+            if (current === 'speech') {
+              placeholder = resources[i18next.language as keyof typeof resources].translation.inputContainerTextFieldSpeech
+              recognition.start()
+              recognitionResult()
+            } else {
+              recognition.stop()
+              placeholder = resources[i18next.language as keyof typeof resources].translation.inputContainerTextField
+            }
+
+            textField.setAttribute('placeholder', placeholder)
           }
         }
 
         const speechBtn = document.querySelector<HTMLButtonElement>(`[data-id="speech"]`)!
 
         const event = () => {
-          if (speechBtn.classList.contains('active-mode')) {
-            speechRecognition.speech.start()
-            recognitionResult()
-          } else {
-            speechRecognition.speech.stop()
+          if (recognition) {
+            if (speechBtn.classList.contains('active-mode')) {
+              recognition.start()
+              recognitionResult()
+            } else {
+              recognition.stop()
+            }
           }
         }
 
         if (type === 'language') {
           changeLanguage(current)
-          speechRecognition.speech.stop()
-          speechRecognition.speech.lang = current
-          speechRecognition.speech.onend = event
-        }
 
+          if (recognition) {
+            recognition.stop()
+            recognition.lang = current
+            recognition.onend = event
+          }
+        }
       }
     }
 
@@ -128,7 +145,14 @@ export const app = (() => {
   }
 
   function switchMode () {
-    switcher('mode')
+    const recognition = speechRecognition.getInstance()
+
+    if (recognition) {
+      switcher('mode')
+    } else {
+      const btn = document.querySelector<HTMLButtonElement>('[data-id="speech"]')!
+      btn.setAttribute('disabled', 'true')
+    }
   }
 
   function switchLanguage () {
