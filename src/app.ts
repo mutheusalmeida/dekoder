@@ -10,12 +10,18 @@ export const app = (() => {
     const textField = document.querySelector<HTMLTextAreaElement>('[data-js="text-field"]')!
 
     speechRecognition.speech.onresult = (event: SpeechRecognitionEvent) => {
+      let interimResult = ''
+
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           textField.value = event.results[i][0].transcript
         } else {
-          textField.value = event.results[i][0].transcript
+          interimResult += event.results[i][0].transcript
         }
+      }
+
+      if (interimResult) {
+        textField.value = interimResult
       }
     }
   }
