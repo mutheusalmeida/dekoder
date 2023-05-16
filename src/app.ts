@@ -74,7 +74,7 @@ export const app = (() => {
         const outputHtml = `
           <p data-js="result">${result}</p>
 
-          <button data-js="copy-btn" data-lng="outputContainerCopyBtn" class="base-btn base-btn--copy">Copiar</button>
+          <button data-js="copy-btn" data-lng="baseBtnCopy" class="base-btn base-btn--copy">${resources[i18next.language as keyof typeof resources].translation.baseBtnCopy}</button>
         `
 
         render(outputEl, outputHtml)

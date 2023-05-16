@@ -59,9 +59,9 @@ render(root, `
         <textarea data-js="text-field" data-lng="inputContainerTextField" class="input-container__text-field" placeholder="Digite seu texto"></textarea>
 
         <div class="input-container__actions">
-          <button data-id="encrypt" data-js="encrypter-btn" data-lng="inputContainerBtnEncrypt" class="base-btn base-btn--encrypt">Criptografar</button>
+          <button data-id="encrypt" data-js="encrypter-btn" data-lng="baseBtnEncrypt" class="base-btn base-btn--encrypt">Criptografar</button>
 
-          <button data-id="decrypt" data-js="encrypter-btn" data-lng="inputContainerBtnDecrypt" class="base-btn base-btn--decrypt">Descriptografar</button>
+          <button data-id="decrypt" data-js="encrypter-btn" data-lng="baseBtnDecrypt" class="base-btn base-btn--decrypt">Descriptografar</button>
         </div>
       </div>
 

@@ -6,9 +6,10 @@ type TranslationType = {
   emptyContainerTitle: string
   inputContainerTextField: string
   inputContainerTextFieldSpeech: string
-  inputContainerBtnEncrypt: string
-  inputContainerBtnDecrypt: string
+  baseBtnEncrypt: string
+  baseBtnDecrypt: string
   emptyContainerPara: string
+  baseBtnCopy: string
 }
 
 type ResourcesType = {
@@ -22,9 +23,10 @@ export const resources: ResourcesType = {
       emptyContainerTitle: 'Nenhuma mensagem encontrada',
       inputContainerTextField: 'Digite seu texto',
       inputContainerTextFieldSpeech: 'Fale algo...',
-      inputContainerBtnEncrypt: 'Criptografar',
-      inputContainerBtnDecrypt: 'Descriptografar',
+      baseBtnEncrypt: 'Criptografar',
+      baseBtnDecrypt: 'Descriptografar',
       emptyContainerPara: 'Digite um texto que você deseja criptografar ou descriptografar.',
+      baseBtnCopy: 'Copiar',
     }
   },
   en: {
@@ -32,9 +34,10 @@ export const resources: ResourcesType = {
       emptyContainerTitle: 'No message found',
       inputContainerTextField: 'Type your text',
       inputContainerTextFieldSpeech: 'Say something...',
-      inputContainerBtnEncrypt: 'Encrypt',
-      inputContainerBtnDecrypt: 'Decrypt',
+      baseBtnEncrypt: 'Encrypt',
+      baseBtnDecrypt: 'Decrypt',
       emptyContainerPara: 'Type a text that you want to encrypt or decrypt.',
+      baseBtnCopy: 'Copy',
     },
   },
 }
