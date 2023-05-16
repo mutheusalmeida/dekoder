@@ -5,6 +5,7 @@ import { textIcon } from './assets/text-icon'
 import { notFoundIllustra } from './assets/not-found-illustra'
 import { app } from './app'
 import { i18n } from './i18n'
+import { speechRecognition } from './speech-recognition'
 
 import './reset.css'
 import './style.css'
@@ -80,6 +81,13 @@ render(root, `
 `)
 
 i18n.init()
+
+if ('webkitSpeechRecognition' in window) {
+  speechRecognition.init()
+} else {
+  console.log('Speech recognition not available')
+}
+
 app.switchMode()
 app.switchLanguage()
 app.encrypter()
