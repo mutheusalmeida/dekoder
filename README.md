@@ -15,7 +15,7 @@ A decrypter app built with Vanilla JavaScript and TypeScript as a challenge for 
 
 ## Screenshots
 
-![App Screenshot](https://i.ibb.co/VwmBDvq/Recording-2023-05-17-at-00-56-18.gif)
+![App Gif](https://github.com/mutheusalmeida/dekoder/blob/main/public/app.gif)
 
 ## Authors
 
