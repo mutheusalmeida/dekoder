@@ -11,6 +11,7 @@ A decrypter app built with Vanilla JavaScript and TypeScript as a challenge for 
 - CSS switcher toggle animation
 - Speech recognition
 - Responsive for all screen sizes
+- Design tokens with CSS variables
 - Nice hover effect
 
 ## Screenshots
