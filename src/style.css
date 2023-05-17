@@ -21,7 +21,7 @@
   min-height: 100%;
   grid-template-rows: max-content 1fr;
   align-content: space-between;
-  gap: 1.5em;
+  gap: 5em;
 }
 
 .header {
@@ -271,6 +271,7 @@
 @media (min-width: 48em) {
   .container {
     padding: 2.5em;
+    gap: 7.5em;
   }
 
   .output-container {
