@@ -29,21 +29,23 @@
 
 
   * {
+    --sb-size: 0.625rem;
     scrollbar-color: var(--green) var(--secondary-dark);
   }
 
   *::-webkit-scrollbar {
-    width: 0.625rem;
+    width: var(--sb-size);
+    height: var(--sb-size);
   }
 
   *::-webkit-scrollbar-track {
     background: var(--secondary-dark);
-    border-radius: 0.625rem;
+    border-radius: var(--sb-size);
   }
 
   *::-webkit-scrollbar-thumb {
     background: var(--green);
-    border-radius: 0.625rem;
+    border-radius: var(--sb-size);
 
   }
 

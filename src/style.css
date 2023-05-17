@@ -241,6 +241,10 @@
   gap: 2em;
 }
 
+.output-container__result {
+  overflow-wrap: anywhere;
+}
+
 .empty-container {
   display: flex;
   flex-direction: column;
